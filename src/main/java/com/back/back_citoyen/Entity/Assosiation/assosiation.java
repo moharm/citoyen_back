@@ -24,7 +24,7 @@ public class assosiation implements Serializable{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private  String nom;
-    private  String desc;
+    private  String description;
     private  String ville;
     private  String Adresse1;
     private  String Adresse2;
