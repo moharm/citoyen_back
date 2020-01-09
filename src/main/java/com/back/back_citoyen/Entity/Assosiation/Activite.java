@@ -12,24 +12,28 @@ import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 /**
  * Activite
  */
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Activite implements Serializable{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Activite implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String titre;
-    private  String description;
-    private  Date date_debut;
-    private  Date date_fin;
-    private  String localisation;
-    private  Long effectif;
-    private  Long effectif_now;
-    private  String scor;
-    private  String statut;
+    private String titre;
+    private String description;
+    private Date date_debut;
+    private Date date_fin;
+    private String localisation;
+    private Long effectif;
+    private Long effectif_now;
+    private String scor;
+    private String statut;
     @ManyToOne
-    private  assosiation assosiation;
-    
+    private assosiation assosiation;
+
 }

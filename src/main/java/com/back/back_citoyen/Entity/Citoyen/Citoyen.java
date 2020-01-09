@@ -17,26 +17,27 @@ import lombok.NoArgsConstructor;
 /**
  * Citoyen
  */
-@Data @NoArgsConstructor @AllArgsConstructor
 @Table(name = "citoyen")
 @Entity
-public class Citoyen implements Serializable{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Citoyen implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String nom;
-    private  String prenom;
-    private  String mdp;
-    private  String ville;
-    private  String Adresse1;
-    private  String Adresse2;
-    private  String Tel;
-    private  String Email;
-    private  String image;
-    private  String QR_code;
-    private  Long Scoor;
-    private  Long age;
+    private String nom;
+    private String prenom;
+    private String mdp;
+    private String ville;
+    private String Adresse1;
+    private String Adresse2;
+    private String Tel;
+    private String email;
+    private String image;
+    private Long Score;
+    private Long age;
     @OneToMany(mappedBy = "citoyen")
     private Collection<Citoyen_parent> Citoyen_parents;
-    
-    
+
 }

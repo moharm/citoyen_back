@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class LoginCitoyenModel {
 
     private String email;
-    private String pwd;
+    private String mdp;
 
     /**
      * @return String return the email
@@ -25,18 +25,14 @@ public class LoginCitoyenModel {
         this.email = email;
     }
 
-    /**
-     * @return String return the pwd
-     */
-    public String getPwd() {
-        return pwd;
+    public String getMdp() {
+        return mdp;
     }
 
-    /**
-     * @param pwd the pwd to set
-     */
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
     }
+
+
 
 }
