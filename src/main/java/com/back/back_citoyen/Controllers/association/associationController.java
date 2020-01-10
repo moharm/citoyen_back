@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.MediaType;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.PushBuilder;
-import java.awt.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 

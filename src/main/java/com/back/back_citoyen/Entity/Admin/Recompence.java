@@ -22,5 +22,22 @@ public class Recompence implements Serializable {
     private  String description;
     private  Date Date;
     private  Long Nombre;
+    private  Long score;
+
+    /**
+     * @param titre
+     * @param description
+     * @param date
+     * @param nombre
+     * @param score
+     */
+
+    public Recompence(String titre, String description, java.util.Date date, Long nombre, Long score) {
+        this.titre = titre;
+        this.description = description;
+        Date = date;
+        Nombre = nombre;
+        this.score = score;
+    }
     
 }
