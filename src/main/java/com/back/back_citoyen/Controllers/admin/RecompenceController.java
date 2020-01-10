@@ -27,7 +27,7 @@ public class RecompenceController {
             @RequestParam("date") String date, @RequestParam("nombre") Long nombre, @RequestParam("score") Long score)
             throws ParseException {
 
-        Date d = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        Date d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS").parse(date);
 
         if(recompenceRepo.save(new Recompence(titre, description, d, nombre, score))!=null){
             return "success";
