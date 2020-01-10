@@ -1,5 +1,6 @@
 package com.back.back_citoyen.Entity.Assosiation;
 
+import java.awt.Image;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -34,7 +35,34 @@ public class assosiation implements Serializable{
     private  String image;
     private  String domaine;
     private  String mdp;
-    private  String role;
     @OneToMany(mappedBy = "assosiation")
     private Collection<Activite> activites;
+
+    /**
+     * @param nom
+     * @param description
+     * @param ville
+     * @param adresse1
+     * @param adresse2
+     * @param localisation
+     * @param tel
+     * @param email
+     * @param image
+     * @param domaine
+     * @param mdp
+     */
+ 
+    public assosiation(String nom, String description, String ville, String adresse1, String adresse2,
+            String localisation, String tel, String email, String domaine, String mdp) {
+        this.nom = nom;
+        this.description = description;
+        this.ville = ville;
+        Adresse1 = adresse1;
+        Adresse2 = adresse2;
+        this.localisation = localisation;
+        Tel = tel;
+        Email = email;
+        this.domaine = domaine;
+        this.mdp = mdp;
+    }
 }
