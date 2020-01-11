@@ -1,6 +1,7 @@
 # citoyen_back
 
 association :*********************************************
+- lister les Association : GET > http://localhost:8080/associations
 - add = Post=>/admin/AddAssociation
 {
 	"adresse1":"mhamid",
@@ -15,10 +16,11 @@ association :*********************************************
 	"nom":"amal",
 	"ville":"marrakech"
 }
-- delete : DELETE > http://localhost:8080/association/1 => 1 is the id
-- update : PUT > http://localhost:8080/association/1 
+- delete : DELETE > http://localhost:8080/associations/1 => 1 is the id
+- update : PUT > http://localhost:8080/associations/1 
 
 Recompence : **********************************************
+- lister les recompences : GET > http://localhost:8080/recompences
 - add = Post=>/admin/AddRecompence
 {
 	"titre":"boooo",
