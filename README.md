@@ -38,4 +38,4 @@ Activite :
 - Search by Status > url : GET http://localhost:8080/activites/search/ByStatus?status=refused
 
 - Accept Activite : POST http://localhost:8080/ActionOnActivite?id=1&status=accepted&score=12
-- refuse Activite : POST http://localhost:8080/ActionOnActivite?id=1&status=refused
+- refuse Activite : POST http://localhost:8080/ActionOnActivite?id=1&status=refused 
