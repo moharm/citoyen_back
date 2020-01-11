@@ -33,6 +33,9 @@ Recompence : **********************************************
 - update : PUT > http://localhost:8080/recompences/1
 
 Activite :
-- Lister les Activites  : http://localhost:8080/activites
-- Search by Id > url : http://localhost:8080/activites/1
-- Search by Status > url : http://localhost:8080/activites/search/ByStatus?status=refused
+- Lister les Activites  : GET http://localhost:8080/activites
+- Search by Id > url :GET  http://localhost:8080/activites/1
+- Search by Status > url : GET http://localhost:8080/activites/search/ByStatus?status=refused
+
+- Accept Activite : POST http://localhost:8080/ActionOnActivite?id=1&status=accepted&score=12
+- refuse Activite : POST http://localhost:8080/ActionOnActivite?id=1&status=refused
