@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,6 +39,7 @@ public class Citoyen implements Serializable {
     private String image;
     private Long Score;
     private Long age;
+    @Expose(serialize = false)
     @OneToMany(mappedBy = "citoyen")
     private Collection<Citoyen_parent> Citoyen_parents;
 

@@ -14,27 +14,31 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 /**
  * assosiation
  */
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "assosiation")
 @Entity
-public class assosiation implements Serializable{
+public class assosiation implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String nom;
-    private  String description;
-    private  String ville;
-    private  String Adresse1;
-    private  String Adresse2;
-    private  String localisation;
-    private  String Tel;
-    private  String Email;
-    private  String image;
-    private  String domaine;
-    private  String mdp;
+    private String nom;
+    private String description;
+    private String ville;
+    private String Adresse1;
+    private String Adresse2;
+    private String localisation;
+    private String Tel;
+    private String Email;
+    private String image;
+    private String domaine;
+    private String mdp;
     @OneToMany(mappedBy = "assosiation")
     private Collection<Activite> activites;
 
@@ -51,7 +55,7 @@ public class assosiation implements Serializable{
      * @param domaine
      * @param mdp
      */
- 
+
     public assosiation(String nom, String description, String ville, String adresse1, String adresse2,
             String localisation, String tel, String email, String domaine, String mdp) {
         this.nom = nom;

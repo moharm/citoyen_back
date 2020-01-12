@@ -11,23 +11,28 @@ import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 /**
  * Citoyen_parent
  */
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Citoyen_parent implements Serializable{
+public class Citoyen_parent implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String nom;
-    private  String prenom;
-    private  String ville;
-    private  String Adresse1;
-    private  String Adresse2;
-    private  String Tel;
-    private  String Email;
-    private  String image;
+    private String nom;
+    private String prenom;
+    private String ville;
+    private String Adresse1;
+    private String Adresse2;
+    private String Tel;
+    private String Email;
+    private String image;
     @ManyToOne
-    private  Citoyen citoyen;
+
+    private Citoyen citoyen;
 }

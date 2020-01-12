@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,11 +31,13 @@ public class Activite implements Serializable {
     private String description;
     private Date date_debut;
     private Date date_fin;
-    private String localisation;
+    private Double longitude;
+    private Double latitude;
     private Long effectif;
     private Long effectif_now;
     private String scor;
     private String statut;
+    @JsonIgnore
     @ManyToOne
     private assosiation assosiation;
 
