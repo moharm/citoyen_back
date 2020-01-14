@@ -24,17 +24,30 @@ import org.springframework.web.multipart.MultipartFile;
 @CrossOrigin("*")
 @RestController
 public class SignUpCitoyen {
+    @Autowired
+    CitoyenRepo citoyenRepo;
 
     @CrossOrigin("*")
     @PostMapping(value = "/citoyen/signup")
     public String Signup(@RequestParam(value = "image", required = false) MultipartFile image,
-            @RequestParam("prenom") String prenom) throws IOException {
+            @RequestParam("prenom") String prenom, @RequestParam("nom") String nom, @RequestParam("mdp") String mdp,
+            @RequestParam("ville") String ville, @RequestParam("adresse1") String adresse1,
+            @RequestParam("tel") String tel, @RequestParam("email") String email,
+            @RequestParam("dateNaissance") String dateNaissance) throws IOException {
 
         System.out.println(image.getContentType().split("/")[1]);
+        // Long id =associationRepo.count()+1;
+        Citoyen citoyen = new Citoyen(nom, prenom, mdp, ville, adresse1, tel, email, dateNaissance);
+        Long id = citoyenRepo.save(citoyen).getId();
+        citoyen.setId(id);
+        citoyen.setImage(id + "." + image.getContentType().split("/")[1]);
+        citoyenRepo.save(citoyen);
+        Files.write(Paths.get("../Store/Citoyen/" + citoyen.getImage()), image.getBytes());
+        if (citoyenRepo.save(citoyen) != null) {
+            return "seccess";
+        }
+        return "failed";
 
-        Files.write(Paths.get("../Store/Citoyen/" + image.getOriginalFilename()), image.getBytes());
-
-        return "prenom";
     }
 
 }
