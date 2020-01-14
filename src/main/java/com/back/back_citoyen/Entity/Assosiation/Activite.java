@@ -2,13 +2,17 @@ package com.back.back_citoyen.Entity.Assosiation;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Collection;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
+import com.back.back_citoyen.Entity.Citoyen.Citoyen;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.annotations.Expose;
 
@@ -40,5 +44,7 @@ public class Activite implements Serializable {
     @JsonIgnore
     @ManyToOne
     private assosiation assosiation;
+    @ManyToMany
+    private Collection<Citoyen> participant_Citoyens;
 
 }

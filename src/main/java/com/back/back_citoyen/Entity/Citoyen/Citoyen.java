@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.back.back_citoyen.Entity.Assosiation.Activite;
 import com.google.gson.annotations.Expose;
 
 import lombok.AllArgsConstructor;
@@ -42,5 +44,7 @@ public class Citoyen implements Serializable {
     @Expose(serialize = false)
     @OneToMany(mappedBy = "citoyen")
     private Collection<Citoyen_parent> Citoyen_parents;
+    @ManyToMany
+    private Collection<Activite> cit_Activites;
 
 }
