@@ -48,19 +48,20 @@ public class CitoyenSetting {
     }
 
     @PutMapping(path = "/citoyen/Participer")
-    public String Participer(@RequestParam(value = "id_citoyen") Long id_citoyen,
-            @RequestParam(value = "id_Activite") Long id_Activite) {
+    public String Participer(@RequestBody(required = false) String id_citoyen,
+            @RequestBody(required = false) String id_Activite) {
 
-        Citoyen citoyen = citoyenRepo.getOne(id_citoyen);
-        Activite activite = activiteRepo.getOne(id_Activite);
+        // Citoyen citoyen = citoyenRepo.getOne(Parse id_citoyen);
+        // Activite activite = activiteRepo.getOne(id_Activite);
 
-        if (citoyen.getCit_Activites().add(activite)) {
-            if (activite.getPar_Citoyens().add(citoyen)) {
-                citoyenRepo.save(citoyen);
-                return "success";
-            }
-        }
-        return "Failed";
+        // if (citoyen.getCit_Activites().add(activite)) {
+        // if (activite.getPar_Citoyens().add(citoyen)) {
+        // citoyenRepo.save(citoyen);
+        // return "success";
+        // }
+        // }
+        System.out.println(id_Activite + " " + id_citoyen);
+        return id_Activite + " " + id_citoyen;
 
     }
 
