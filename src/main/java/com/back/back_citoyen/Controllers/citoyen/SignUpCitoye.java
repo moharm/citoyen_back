@@ -20,7 +20,7 @@ public class SignUpCitoye {
 
         System.out.println(image.getContentType().split("/")[1]);
      
-        Files.write(Paths.get("../Store/Association/" + image.getOriginalFilename()), image.getBytes());
+        Files.write(Paths.get("../Store/citoyen/" + image.getOriginalFilename()), image.getBytes());
         return "success";
     }
 
