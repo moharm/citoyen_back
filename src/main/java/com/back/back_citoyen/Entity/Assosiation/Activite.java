@@ -3,14 +3,10 @@ package com.back.back_citoyen.Entity.Assosiation;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import com.back.back_citoyen.Entity.Citoyen.Citoyen;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,12 +22,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "Activite")
 @Entity
 public class Activite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titre;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Date date_debut;
     private Date date_fin;
@@ -44,7 +42,14 @@ public class Activite implements Serializable {
     @JsonIgnore
     @ManyToOne
     private assosiation assosiation;
-    @ManyToMany
-    private Collection<Citoyen> participant_Citoyens;
+
+    
+    @ManyToMany(fetch = FetchType.LAZY,
+    cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    },
+    mappedBy = "cit_Activites")
+    private Collection<Citoyen> par_Citoyens;
 
 }
