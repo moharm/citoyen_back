@@ -29,10 +29,20 @@ public class CitoyenSetting {
 
     CitoyenRepo citoyenRepo;
 
-    @GetMapping(path = "/photoCitoyen/{id}" , produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] getPhoto(@PathVariable("id")  Long id) throws IOException {
-        String image = citoyenRepo.findById(id).get().getImage();
-        return Files.readAllBytes(Paths.get("../Store/Citoyen/"+image));
+    @GetMapping(path = "/photoCitoyen/{id}", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getPhoto(@PathVariable("id") Long id) {
+        try {
+            String image = citoyenRepo.findById(id).get().getImage();
+            // return Files.readAllBytes(Paths.get("../Store/Citoyen/" + image));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    
+
+    @PostMapping(value = "/photoCit")
+    public void photoc(@RequestBody Long id) {
+        System.out.println("*********" + id);
+    }
+
 }
