@@ -47,4 +47,32 @@ public class Citoyen implements Serializable {
     @ManyToMany
     private Collection<Activite> cit_Activites;
 
+    /**
+     * @param nom
+     * @param prenom
+     * @param mdp
+     * @param ville
+     * @param adresse1
+     * @param adresse2
+     * @param tel
+     * @param email
+     * @param image
+     * @param age
+     */
+
+    public Citoyen(String nom, String prenom, String mdp, String ville, String adresse1, String adresse2, String tel,
+            String email, Long age) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mdp = mdp;
+        this.ville = ville;
+        Adresse1 = adresse1;
+        Adresse2 = adresse2;
+        Tel = tel;
+        this.email = email;
+        this.age = age;
+    }
+
+
+    
 }

@@ -5,7 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import com.back.back_citoyen.DAO.association.AssociationRepo;
+import com.back.back_citoyen.DAO.citoyen.CitoyenRepo;
 import com.back.back_citoyen.Entity.Assosiation.assosiation;
+import com.back.back_citoyen.Entity.Citoyen.Citoyen;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * SignUpCitoye
  */
+@CrossOrigin("*")
 @RestController
 public class SignUpCitoyen {
 
