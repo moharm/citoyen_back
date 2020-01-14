@@ -27,13 +27,14 @@ import java.nio.file.Paths;
 @RestController
 public class CitoyenSetting {
 
+    @Autowired
     CitoyenRepo citoyenRepo;
 
     @GetMapping(path = "/photoCitoyen/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getPhoto(@PathVariable("id") Long id) {
         try {
             String image = citoyenRepo.findById(id).get().getImage();
-            // return Files.readAllBytes(Paths.get("../Store/Citoyen/" + image));
+            return Files.readAllBytes(Paths.get("../Store/Citoyen/" + image));
         } catch (Exception e) {
             e.printStackTrace();
         }
