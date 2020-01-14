@@ -8,6 +8,7 @@ import com.back.back_citoyen.DAO.association.AssociationRepo;
 import com.back.back_citoyen.Entity.Assosiation.assosiation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,7 @@ public class associationSettings {
     @Autowired
     AssociationRepo associationRepo;
 
+    @CrossOrigin("*")
     @PostMapping(value = "/admin/AddAssociation")
     public String AddAssociation(@RequestParam(value = "image", required = false) MultipartFile image,
             @RequestParam("adresse1") String adresse1, @RequestParam("adresse2") String adresse2,
@@ -32,21 +34,20 @@ public class associationSettings {
             @RequestParam("localisation") String localisation, @RequestParam("mdp") String mdp,
             @RequestParam("nom") String nom, @RequestParam("ville") String ville) throws IOException {
 
-                System.out.println(image.getContentType().split("/")[1]);
+        System.out.println(image.getContentType().split("/")[1]);
         // Long id =associationRepo.count()+1;
-        assosiation asso = new assosiation(nom,description,ville,adresse1,adresse2,localisation,tel,email,domaine,mdp);
+        assosiation asso = new assosiation(nom, description, ville, adresse1, adresse2, localisation, tel, email,
+                domaine, mdp);
         Long id = associationRepo.save(asso).getId();
         asso.setId(id);
-        asso.setImage(id+"."+image.getContentType().split("/")[1]);
+        asso.setImage(id + "." + image.getContentType().split("/")[1]);
         associationRepo.save(asso);
-        Files.write(Paths.get("../Store/Association/"+ asso.getImage()),image.getBytes());
-        if(associationRepo.save(asso)!=null){
+        Files.write(Paths.get("../Store/Association/" + asso.getImage()), image.getBytes());
+        if (associationRepo.save(asso) != null) {
             return "seccess";
         }
         return "failed";
 
-
     }
 
-    
 }
