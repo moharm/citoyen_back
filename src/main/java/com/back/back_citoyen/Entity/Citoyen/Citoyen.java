@@ -2,14 +2,10 @@ package com.back.back_citoyen.Entity.Citoyen;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.back.back_citoyen.Entity.Assosiation.Activite;
 import com.google.gson.annotations.Expose;
@@ -44,7 +40,16 @@ public class Citoyen implements Serializable {
     @Expose(serialize = false)
     @OneToMany(mappedBy = "citoyen")
     private Collection<Citoyen_parent> Citoyen_parents;
-    @ManyToMany
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+    cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+    @JoinTable(name = "Citoyens_Activites",
+    joinColumns = { @JoinColumn(name = "Citoyen_id") },
+    inverseJoinColumns = { @JoinColumn(name = "Activite_id") })
     private Collection<Activite> cit_Activites;
 
     /**
