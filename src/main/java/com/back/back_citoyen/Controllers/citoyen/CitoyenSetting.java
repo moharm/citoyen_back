@@ -27,6 +27,7 @@ import java.nio.file.Paths;
 @RestController
 public class CitoyenSetting {
 
+    @Autowired
     CitoyenRepo citoyenRepo;
 
     @GetMapping(path = "/photoCitoyen/{id}" , produces = MediaType.IMAGE_PNG_VALUE)

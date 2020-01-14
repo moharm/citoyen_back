@@ -20,15 +20,25 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class SignUpCitoyen {
 
-    @CrossOrigin("*")
-    @PostMapping(value = "/citoyen/signup")
-    public String Signup(@RequestParam(value = "image", required = false) MultipartFile image,
-    @RequestParam("prenom") String prenom) throws IOException {
+    // @CrossOrigin("*")
+    // @PostMapping(value = "/citoyen/signup")
+    // public String Signup(@RequestParam(value = "image", required = false) MultipartFile image,
+    //                         @RequestParam("prenom") String prenom,
+    //                         @RequestParam("nom") String nom,
+    //                         @RequestParam("mdp") String mdp,
+    //                         @RequestParam("ville") String ville,
+    //                         @RequestParam("Adresse1") String Adresse1,
+    //                         @RequestParam("Adresse2") String Adresse2,
+    //                         @RequestParam("Tel") String Tel,
+    //                         @RequestParam("email") String email,
+    //                         @RequestParam("email") String image,
+    //                         @RequestParam("email") Long age) throws IOException {
+                                
 
-        System.out.println(image.getContentType().split("/")[1]);
+    //     System.out.println(image.getContentType().split("/")[1]);
      
-        Files.write(Paths.get("../Store/Citoyen/" + image.getOriginalFilename()), image.getBytes());
-        return "prenom";
-    }
+    //     Files.write(Paths.get("../Store/Citoyen/" + image.getOriginalFilename()), image.getBytes());
+    //     return "prenom";
+    // }
 
 }
