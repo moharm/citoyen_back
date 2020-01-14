@@ -16,12 +16,13 @@ public class SignUpCitoye {
 
     @CrossOrigin("*")
     @PostMapping(value = "/citoyen/signup")
-    public String Signup(@RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
+    public String Signup(@RequestParam(value = "image", required = false) MultipartFile image,
+    @RequestParam("prenom") String prenom) throws IOException {
 
         System.out.println(image.getContentType().split("/")[1]);
      
         Files.write(Paths.get("../Store/Citoyen/" + image.getOriginalFilename()), image.getBytes());
-        return "success";
+        return prenom;
     }
 
 }
