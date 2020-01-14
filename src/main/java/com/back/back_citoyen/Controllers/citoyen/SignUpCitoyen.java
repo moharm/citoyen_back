@@ -33,14 +33,13 @@ public class SignUpCitoyen {
                             @RequestParam("mdp") String mdp,
                             @RequestParam("ville") String ville,
                             @RequestParam("adresse1") String adresse1,
-                            @RequestParam("adresse2") String adresse2,
                             @RequestParam("tel") String tel,
                             @RequestParam("email") String email,
-                            @RequestParam("age") Long age) throws IOException {
+                            @RequestParam("dateNaissance") String dateNaissance) throws IOException {
                                 
             System.out.println(image.getContentType().split("/")[1]);
             // Long id =associationRepo.count()+1;
-            Citoyen citoyen = new Citoyen(nom, prenom, mdp, ville, adresse1, adresse2, tel, email, age);
+            Citoyen citoyen = new Citoyen(nom, prenom, mdp, ville, adresse1, tel, email, dateNaissance);
             Long id = citoyenRepo.save(citoyen).getId();
             citoyen.setId(id);
             citoyen.setImage(id + "." + image.getContentType().split("/")[1]);

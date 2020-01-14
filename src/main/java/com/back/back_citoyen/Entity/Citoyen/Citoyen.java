@@ -40,7 +40,7 @@ public class Citoyen implements Serializable {
     private String email;
     private String image;
     private Long Score;
-    private Long age;
+    private String DateNaissance;
     @Expose(serialize = false)
     @OneToMany(mappedBy = "citoyen")
     private Collection<Citoyen_parent> Citoyen_parents;
@@ -53,25 +53,23 @@ public class Citoyen implements Serializable {
      * @param mdp
      * @param ville
      * @param adresse1
-     * @param adresse2
      * @param tel
      * @param email
      * @param image
-     * @param age
+     * @param dateNaissance
      */
 
-    public Citoyen(String nom, String prenom, String mdp, String ville, String adresse1, String adresse2, String tel,
-            String email, Long age) {
+    public Citoyen(String nom, String prenom, String mdp, String ville, String adresse1, String tel, String email, String dateNaissance) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
         this.ville = ville;
         Adresse1 = adresse1;
-        Adresse2 = adresse2;
         Tel = tel;
         this.email = email;
-        this.age = age;
+        DateNaissance = dateNaissance;
     }
+
 
 
     
