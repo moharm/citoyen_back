@@ -9,6 +9,7 @@ import com.back.back_citoyen.Entity.Assosiation.activiteid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class activiteController {
 
     Activite activite = new Activite();
 
-    @PostMapping(value = "/ActionOnActivite")
+    @PutMapping(value = "/ActionOnActivite")
     public String ActionOnActivite(@RequestParam("id") Long id, @RequestParam("status") String status,
             @RequestParam("score") String score) {
 
