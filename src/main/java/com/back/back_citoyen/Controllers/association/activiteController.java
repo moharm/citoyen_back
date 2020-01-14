@@ -4,8 +4,7 @@ import java.util.List;
 
 import com.back.back_citoyen.DAO.association.ActiviteRepo;
 import com.back.back_citoyen.Entity.Assosiation.Activite;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.back.back_citoyen.Entity.Assosiation.activiteid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,11 +44,13 @@ public class activiteController {
 
     }
 
-    @GetMapping(value = "/activities")
-    public List<Activite> Liste() {
-        List<Activite> liste = activiteRepo.findAll();
-
-        return liste;
-    }
+    /*
+     * @GetMapping(value = "/activities") public List<Activite> Liste() {
+     * List<Activite> liste = activiteRepo.findAll() List<Activite> liste =
+     * activiteRepo.findAll(); return liste; }
+     * 
+     * @GetMapping(value = "/activite") public List<activiteid> activite() {
+     * List<Activite> liste = activiteRepo.findAll(); return liste; }
+     */
 
 }
