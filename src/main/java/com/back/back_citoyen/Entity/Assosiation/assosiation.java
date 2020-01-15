@@ -35,7 +35,7 @@ public class assosiation implements Serializable {
     private String Adresse2;
     private String localisation;
     private String Tel;
-    private String Email;
+    private String email;
     private String image;
     private String domaine;
     private String mdp;
