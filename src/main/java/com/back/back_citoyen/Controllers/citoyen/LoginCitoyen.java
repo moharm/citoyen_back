@@ -50,8 +50,6 @@ public class LoginCitoyen {
     return jsono.toString();
   }
 
-
-
   @GetMapping(value = "/citoyen")
   public List<Citoyen> Liste() {
     List<Citoyen> liste = citoyenRepo.findAll();

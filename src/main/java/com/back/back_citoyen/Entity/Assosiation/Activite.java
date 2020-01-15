@@ -39,17 +39,14 @@ public class Activite implements Serializable {
     private Long effectif_now;
     private String scor;
     private String statut;
+    private String image;
     @JsonIgnore
     @ManyToOne
     private assosiation assosiation;
 
-    
-    @ManyToMany(fetch = FetchType.LAZY,
-    cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE
-    },
-    mappedBy = "cit_Activites")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,
+            CascadeType.MERGE }, mappedBy = "cit_Activites")
+    @JsonIgnore
     private Collection<Citoyen> par_Citoyens;
 
 }
