@@ -65,7 +65,7 @@ public class assosiation implements Serializable {
         Adresse2 = adresse2;
         this.localisation = localisation;
         Tel = tel;
-        Email = email;
+        this.email = email;
         this.domaine = domaine;
         this.mdp = mdp;
     }

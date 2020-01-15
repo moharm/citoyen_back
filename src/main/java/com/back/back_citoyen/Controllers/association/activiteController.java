@@ -6,6 +6,8 @@ import java.util.Optional;
 import com.back.back_citoyen.DAO.association.ActiviteRepo;
 import com.back.back_citoyen.Entity.Assosiation.Activite;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +26,9 @@ public class activiteController {
     @Autowired
     ActiviteRepo activiteRepo;
 
+    JSONObject o;
     Activite activite = new Activite();
- 
+
     @PutMapping(value = "/ActionOnActivite")
     public String ActionOnActivite(@RequestParam("id") Long id, @RequestParam("status") String status,
             @RequestParam("score") String score) {
@@ -47,10 +50,23 @@ public class activiteController {
 
     }
 
-    @PutMapping(value = "/AjouterActivite")
-    public String AjouterActivite() {
+    @PostMapping(value = "/association/activites")
+    public List<Activite> getcitat(@RequestBody String data) {
 
+        try {
+            o = new JSONObject(data);
+            Long id = o.getLong("id");
+            System.out.println("********************");
+            return activiteRepo.findByAssosiation_Id(id);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
+        /*
+         * 
+         */
+        return null;
 
     }
 
