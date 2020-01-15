@@ -55,7 +55,6 @@ public class activiteController {
 
     }
 
-<<<<<<< HEAD
     @PostMapping(value = "/AjouterActivite")
     public String AjouterActivite(@RequestParam(value = "image", required = false) MultipartFile image,
     @RequestParam("titre") String titre, @RequestParam("description") String description,
@@ -74,13 +73,11 @@ public class activiteController {
             //TODO: handle exception
             return "Failed";
         }
-   
-=======
+    }
     @CrossOrigin("*")
     @GetMapping(value = "/activites/inProgress")
     public List<Activite> ListeInProgress() {
         List<Activite> liste = activiteRepo.findByStatut("in progress");
->>>>>>> 962c7faa2f4276674882cbf97fb439766741e178
 
         return liste;
     }
