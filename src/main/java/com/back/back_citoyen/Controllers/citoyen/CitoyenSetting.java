@@ -101,7 +101,7 @@ public class CitoyenSetting {
             o = new JSONObject(data);
             Long id_Activite = o.getLong("id_Activite");
             Long id_Citoyen = o.getLong("id_Citoyen");
-
+            System.out.println(id_Activite);
 
             Long oo = (long) 6;
             Long ScoreActivite = Long.parseLong(activiteRepo.getOne(id_Activite).getScor());
@@ -114,7 +114,7 @@ public class CitoyenSetting {
             System.out.println(ScoreActivite);
             return "success";
         } catch (Exception e) {
-            System.out.println("error");
+            System.out.println(e.getMessage());
             return e.getMessage();
 
         }
