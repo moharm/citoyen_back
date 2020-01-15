@@ -63,7 +63,7 @@ public class Activite implements Serializable {
      */
 
     public Activite(String titre, String description, java.sql.Date date_debut2, java.sql.Date date_fin2, Double longitude, Double latitude,
-            Long effectif, String score, String image,
+            Long effectif, String scor, String image,
             com.back.back_citoyen.Entity.Assosiation.assosiation assosiation,String statut) {
         this.titre = titre;
         this.description = description;
