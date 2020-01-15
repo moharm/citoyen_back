@@ -8,8 +8,12 @@ import com.back.back_citoyen.DAO.citoyen.CitoyenRepo;
 import com.back.back_citoyen.Entity.Assosiation.Activite;
 import com.back.back_citoyen.Entity.Assosiation.assosiation;
 import com.back.back_citoyen.Entity.Citoyen.Citoyen;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +26,11 @@ import org.springframework.http.MediaType;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import antlr.collections.List;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collection;
 
 /**
  * CitoyenSetting
@@ -31,10 +38,13 @@ import java.nio.file.Paths;
 @RestController
 public class CitoyenSetting {
 
+    JsonArray jsono;
     @Autowired
     CitoyenRepo citoyenRepo;
     @Autowired
     ActiviteRepo activiteRepo;
+
+    JSONObject o;
 
     @GetMapping(path = "/photoCitoyen/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getPhoto(@PathVariable("id") Long id) {
@@ -48,20 +58,39 @@ public class CitoyenSetting {
     }
 
     @PutMapping(path = "/citoyen/Participer")
-    public String Participer(@RequestBody(required = false) String id_citoyen,
-            @RequestBody(required = false) String id_Activite) {
+    public String Participer(@RequestBody(required = false) String id_citoyen) throws JSONException {
+        o = new JSONObject(id_citoyen);
+        Citoyen citoyen = citoyenRepo.getOne(Long.parseLong(o.getString("id_citoyen")));
+        Activite activite = activiteRepo.getOne(Long.parseLong(o.getString("id_Activite")));
+        try {
+            if (citoyen.getCit_Activites().add(activite)) {
+                if (activite.getPar_Citoyens().add(citoyen)) {
+                    if (citoyenRepo.save(citoyen) != null) {
+                        System.out.println("success");
+                        return "success";
+                    }
+                }
+            }
+            return "Failed";
+        } catch (Exception e) {
+            // TODO: handle exception
+            return "Failed";
 
-        // Citoyen citoyen = citoyenRepo.getOne(Parse id_citoyen);
-        // Activite activite = activiteRepo.getOne(id_Activite);
+        }
 
-        // if (citoyen.getCit_Activites().add(activite)) {
-        // if (activite.getPar_Citoyens().add(citoyen)) {
-        // citoyenRepo.save(citoyen);
-        // return "success";
-        // }
-        // }
-        System.out.println(id_Activite + " " + id_citoyen);
-        return id_Activite + " " + id_citoyen;
+    }
+
+    @PostMapping(value = "/citoyen/getpart")
+    public Collection<Activite> getcitat(@RequestBody String data) throws JSONException {
+
+        o = new JSONObject(data);
+        Long id = o.getLong("id");
+        System.out.println("********************");
+        Collection<Activite> c = citoyenRepo.getOne(id).getCit_Activites();
+        /*
+         * 
+         */
+        return c;
 
     }
 

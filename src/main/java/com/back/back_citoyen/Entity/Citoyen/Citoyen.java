@@ -41,15 +41,10 @@ public class Citoyen implements Serializable {
     @OneToMany(mappedBy = "citoyen")
     private Collection<Citoyen_parent> Citoyen_parents;
 
-
-    @ManyToMany(fetch = FetchType.LAZY,
-    cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE
-    })
-    @JoinTable(name = "Citoyens_Activites",
-    joinColumns = { @JoinColumn(name = "Citoyen_id") },
-    inverseJoinColumns = { @JoinColumn(name = "Activite_id") })
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "Citoyens_Activites", joinColumns = {
+            @JoinColumn(name = "Citoyen_id", referencedColumnName = "id", nullable = false, updatable = false) }, inverseJoinColumns = {
+                    @JoinColumn(name = "Activite_id", referencedColumnName = "id", nullable = false, updatable = false) })
     private Collection<Activite> cit_Activites;
 
     /**
@@ -64,7 +59,8 @@ public class Citoyen implements Serializable {
      * @param dateNaissance
      */
 
-    public Citoyen(String nom, String prenom, String mdp, String ville, String adresse1, String tel, String email, String dateNaissance) {
+    public Citoyen(String nom, String prenom, String mdp, String ville, String adresse1, String tel, String email,
+            String dateNaissance) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
@@ -75,7 +71,4 @@ public class Citoyen implements Serializable {
         DateNaissance = dateNaissance;
     }
 
-
-
-    
 }
