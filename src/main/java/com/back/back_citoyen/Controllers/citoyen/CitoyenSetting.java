@@ -30,6 +30,7 @@ import antlr.collections.List;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Collection;
 
 /**
@@ -93,5 +94,28 @@ public class CitoyenSetting {
         return c;
 
     }
+    
+    @PostMapping(value = "/citoyen/AddScore")
+    public String Participe_comfirme(@RequestParam("id_Citoyen") Long id_Citoyen, @RequestParam("id_Activite") Long id_Activite) throws  SQLException {
+        try {
+            // System.out.println(id_Activite);
+            Long oo = (long) 6;
+            Long ScoreActivite = Long.parseLong(activiteRepo.getOne(id_Activite).getScor());
+            System.out.println(activiteRepo.getOne(id_Activite).getScor());
+            Citoyen citoyen = citoyenRepo.getOne(id_Citoyen);
+            System.out.println(ScoreActivite);
+            citoyen.AddScore(ScoreActivite);
+            System.out.println(citoyen.toString());
+            citoyenRepo.save(citoyen);
+            System.out.println(ScoreActivite);
+            return "success";
+        } catch (Exception e) {
+            System.out.println("error");
+            return e.getMessage();
+
+        }
+   
+    }
+
 
 }

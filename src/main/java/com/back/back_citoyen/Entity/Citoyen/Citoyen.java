@@ -71,4 +71,8 @@ public class Citoyen implements Serializable {
         DateNaissance = dateNaissance;
     }
 
+    public void AddScore(Long score){
+        this.Score = this.Score + score;
+    }
+
 }
