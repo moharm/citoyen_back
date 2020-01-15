@@ -2,14 +2,10 @@ package com.back.back_citoyen.Entity.Citoyen;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.back.back_citoyen.Entity.Assosiation.Activite;
 import com.google.gson.annotations.Expose;
@@ -40,11 +36,46 @@ public class Citoyen implements Serializable {
     private String email;
     private String image;
     private Long Score;
-    private Long age;
+    private String DateNaissance;
     @Expose(serialize = false)
     @OneToMany(mappedBy = "citoyen")
     private Collection<Citoyen_parent> Citoyen_parents;
-    @ManyToMany
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+    cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+    })
+    @JoinTable(name = "Citoyens_Activites",
+    joinColumns = { @JoinColumn(name = "Citoyen_id") },
+    inverseJoinColumns = { @JoinColumn(name = "Activite_id") })
     private Collection<Activite> cit_Activites;
 
+    /**
+     * @param nom
+     * @param prenom
+     * @param mdp
+     * @param ville
+     * @param adresse1
+     * @param tel
+     * @param email
+     * @param image
+     * @param dateNaissance
+     */
+
+    public Citoyen(String nom, String prenom, String mdp, String ville, String adresse1, String tel, String email, String dateNaissance) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mdp = mdp;
+        this.ville = ville;
+        Adresse1 = adresse1;
+        Tel = tel;
+        this.email = email;
+        DateNaissance = dateNaissance;
+    }
+
+
+
+    
 }

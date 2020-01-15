@@ -50,18 +50,6 @@ public class LoginCitoyen {
     return jsono.toString();
   }
 
-  @PostMapping(value = "/citoyen/signup")
-  public String Signup(@RequestBody Citoyen citoyen) {
-    jsono = new JsonObject();
-    jsono.addProperty("success", false);
-    if (citoyenRepo.save(citoyen) != null) {
-      jsono.addProperty("success", true);
-      jsono.addProperty("id", citoyen.getId());
-    }
-    return jsono.toString();
-
-  }
-
   @GetMapping(value = "/citoyen")
   public List<Citoyen> Liste() {
     List<Citoyen> liste = citoyenRepo.findAll();
