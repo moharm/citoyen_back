@@ -37,7 +37,7 @@ public class Activite implements Serializable {
     private Double latitude;
     private Long effectif;
     private Long effectif_now;
-    private String scor;
+    private String score;
     private String statut;
     private String image;
     @JsonIgnore
@@ -48,5 +48,36 @@ public class Activite implements Serializable {
             CascadeType.MERGE }, mappedBy = "cit_Activites")
     @JsonIgnore
     private Collection<Citoyen> par_Citoyens;
+
+    /**
+     * @param titre
+     * @param description
+     * @param date_debut2
+     * @param date_fin2
+     * @param longitude
+     * @param latitude
+     * @param effectif
+     * @param score
+     * @param image
+     * @param assosiation
+     */
+
+    public Activite(String titre, String description, java.sql.Date date_debut2, java.sql.Date date_fin2, Double longitude, Double latitude,
+            Long effectif, String score, String image,
+            com.back.back_citoyen.Entity.Assosiation.assosiation assosiation,String statut) {
+        this.titre = titre;
+        this.description = description;
+        this.date_debut = date_debut2;
+        this.date_fin = date_fin2;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.effectif = effectif;
+        this.score = score;
+        this.image = image;
+        this.assosiation = assosiation;
+        this.statut = statut;
+    }
+
+    
 
 }
