@@ -72,11 +72,6 @@ public class associationController {
                 jsono.addProperty("nom", assoc.getNom());
             }
         }
-        /*
-         * citoyenRepo.findAll().forEach(c->{ System.out.println(c.getEmail()); });
-         * System.out.println(citoyen.getEmail());
-         */
-
         return jsono.toString();
     }
 

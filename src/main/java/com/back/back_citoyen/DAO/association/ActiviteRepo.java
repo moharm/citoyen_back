@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.back.back_citoyen.Entity.Assosiation.Activite;
 import com.back.back_citoyen.Entity.Assosiation.activiteid;
+import com.back.back_citoyen.Entity.Assosiation.assosiation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,5 +24,7 @@ public interface ActiviteRepo extends JpaRepository<Activite, Long> {
 
     @RestResource(path = "/ByStatus")
     public List<Activite> findByStatut(@Param("status") String statut);
+
+    public List<Activite> findByAssosiation(assosiation assosiation);
 
 }

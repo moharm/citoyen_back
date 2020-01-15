@@ -9,8 +9,9 @@ import com.back.back_citoyen.DAO.association.AssociationRepo;
 import com.back.back_citoyen.Entity.Assosiation.Activite;
 import com.back.back_citoyen.Entity.Assosiation.assosiation;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,9 +32,9 @@ public class activiteController {
     @Autowired
     AssociationRepo associationRepo;
 
+    JSONObject o;
     Activite activite = new Activite();
 
-    @CrossOrigin("*")
     @PutMapping(value = "/ActionOnActivite")
     public String ActionOnActivite(@RequestParam("id") Long id, @RequestParam("status") String status,
             @RequestParam("score") String score) {
@@ -55,8 +56,28 @@ public class activiteController {
 
     }
 
+    @PostMapping(value = "/association/activites")
+    public List<Activite> getcitat(@RequestBody String data) {
+
+        try {
+            o = new JSONObject(data);
+            Long id = o.getLong("id");
+            System.out.println("********************");
+            return activiteRepo.findByAssosiation_Id(id);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        /*
+         * 
+         */
+        return null;
+    }
+
     @PostMapping(value = "/AjouterActivite")
     public String AjouterActivite(@RequestParam(value = "image", required = false) MultipartFile image,
+<<<<<<< HEAD
     @RequestParam("titre") String titre, @RequestParam("description") String description,
     @RequestParam("date_debut") Date date_debut, @RequestParam("date_fin") Date date_fin,
     @RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude,
@@ -67,18 +88,24 @@ public class activiteController {
             assosiation asso = associationRepo.getOne(assosiation_id);
             activiteRepo.save(new Activite(titre, description, date_debut, date_fin, longitude, latitude, effectif, scor, image.getOriginalFilename(), asso,"in progress"));
 
+=======
+            @RequestParam("titre") String titre, @RequestParam("description") String description,
+            @RequestParam("date_debut") Date date_debut, @RequestParam("date_fin") Date date_fin,
+            @RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude,
+            @RequestParam("effectif") Long effectif, @RequestParam("score") String score,
+            @RequestParam("assosiation_id") Long assosiation_id) {
+
+        try {
+            assosiation asso = associationRepo.getOne(assosiation_id);
+            activiteRepo.save(new Activite(titre, description, date_debut, date_fin, longitude, latitude, effectif,
+                    score, image.getOriginalFilename(), asso, "in progress"));
+>>>>>>> 1e0f1a35df53ac0322232283fefcaea74bce8753
 
             return "success";
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             return "Failed";
         }
     }
-    @CrossOrigin("*")
-    @GetMapping(value = "/activites/inProgress")
-    public List<Activite> ListeInProgress() {
-        List<Activite> liste = activiteRepo.findByStatut("in progress");
 
-        return liste;
-    }
 }
