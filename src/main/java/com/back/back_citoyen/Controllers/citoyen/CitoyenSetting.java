@@ -96,9 +96,13 @@ public class CitoyenSetting {
     }
     
     @PostMapping(value = "/citoyen/AddScore")
-    public String Participe_comfirme(@RequestParam("id_Citoyen") Long id_Citoyen, @RequestParam("id_Activite") Long id_Activite) throws  SQLException {
+    public String Participe_comfirme(@RequestParam String data) throws  SQLException {
         try {
-            // System.out.println(id_Activite);
+            o = new JSONObject(data);
+            Long id_Activite = o.getLong("id_Activite");
+            Long id_Citoyen = o.getLong("id_Citoyen");
+
+
             Long oo = (long) 6;
             Long ScoreActivite = Long.parseLong(activiteRepo.getOne(id_Activite).getScor());
             System.out.println(activiteRepo.getOne(id_Activite).getScor());
