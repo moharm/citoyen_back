@@ -60,12 +60,12 @@ public class activiteController {
     @RequestParam("titre") String titre, @RequestParam("description") String description,
     @RequestParam("date_debut") Date date_debut, @RequestParam("date_fin") Date date_fin,
     @RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude,
-    @RequestParam("effectif") Long effectif, @RequestParam("score") String score,
+    @RequestParam("effectif") Long effectif, @RequestParam("scor") String scor,
     @RequestParam("assosiation_id") Long assosiation_id) {
 
         try {
             assosiation asso = associationRepo.getOne(assosiation_id);
-            activiteRepo.save(new Activite(titre, description, date_debut, date_fin, longitude, latitude, effectif, score, image.getOriginalFilename(), asso,"in progress"));
+            activiteRepo.save(new Activite(titre, description, date_debut, date_fin, longitude, latitude, effectif, scor, image.getOriginalFilename(), asso,"in progress"));
 
 
             return "success";
