@@ -96,7 +96,7 @@ public class CitoyenSetting {
     }
     
     @PostMapping(value = "/citoyen/AddScore")
-    public String Participe_comfirme(@RequestParam String data) throws  SQLException {
+    public String Participe_comfirme(@RequestBody String data) throws  SQLException {
         try {
             o = new JSONObject(data);
             Long id_Activite = o.getLong("id_Activite");
