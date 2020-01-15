@@ -39,6 +39,7 @@ public class Activite implements Serializable {
     private Long effectif_now;
     private String scor;
     private String statut;
+    private String image;
     @JsonIgnore
     @ManyToOne
     private assosiation assosiation;

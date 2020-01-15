@@ -25,7 +25,7 @@ public class activiteController {
     ActiviteRepo activiteRepo;
 
     Activite activite = new Activite();
-
+ 
     @PutMapping(value = "/ActionOnActivite")
     public String ActionOnActivite(@RequestParam("id") Long id, @RequestParam("status") String status,
             @RequestParam("score") String score) {
@@ -44,6 +44,13 @@ public class activiteController {
         } else {
             return "failed";
         }
+
+    }
+
+    @PutMapping(value = "/AjouterActivite")
+    public String AjouterActivite() {
+
+
 
     }
 
