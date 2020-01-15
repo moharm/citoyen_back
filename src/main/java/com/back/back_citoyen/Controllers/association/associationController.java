@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.back.back_citoyen.DAO.association.ActiviteRepo;
 import com.back.back_citoyen.DAO.association.AssociationRepo;
+import com.back.back_citoyen.Entity.Assosiation.LoginAssociationModel;
 import com.back.back_citoyen.Entity.Assosiation.assosiation;
 import com.google.gson.JsonObject;
 
@@ -33,28 +34,50 @@ public class associationController {
 
     JsonObject jsono;
 
-
-@PostMapping(value = "/association/offres" )
-public void getOffres(@RequestBody Long id ){
+    @PostMapping(value = "/association/offres")
+    public void getOffres(@RequestBody Long id) {
 
         System.out.println(id);
         // jsono=new JsonObject();
-        activiteRepo.findByAssosiation_Id(id).forEach(a->{
+        activiteRepo.findByAssosiation_Id(id).forEach(a -> {
             System.out.println(a.getTitre());
         });
-       
-        /*citoyenRepo.findAll().forEach(c->{
-            System.out.println(c.getEmail());
-        });
-        System.out.println(citoyen.getEmail());*/
 
-        //return jsono.toString();
+        /*
+         * citoyenRepo.findAll().forEach(c->{ System.out.println(c.getEmail()); });
+         * System.out.println(citoyen.getEmail());
+         */
+
+        // return jsono.toString();
     }
 
-    @GetMapping(path = "/photoAssociation/{id}" , produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] getPhoto(@PathVariable("id")  Long id) throws IOException {
+    @GetMapping(path = "/photoAssociation/{id}", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getPhoto(@PathVariable("id") Long id) throws IOException {
         String image = associationRepo.findById(id).get().getImage();
-        return Files.readAllBytes(Paths.get("../Store/Association/"+image));
+        return Files.readAllBytes(Paths.get("../Store/Association/" + image));
+    }
+
+    @PostMapping(value = "/association/login")
+    public String Login(@RequestBody LoginAssociationModel association) {
+        jsono = new JsonObject();
+        assosiation assoc = null;
+        if (!associationRepo.findByEmail(association.getEmail()).isEmpty()) {
+            assoc = associationRepo.findByEmail(association.getEmail()).get(0);
+        }
+        jsono.addProperty("success", false);
+        if (assoc != null) {
+            if (association.getMdp().equals(assoc.getMdp())) {
+                jsono.addProperty("success", true);
+                jsono.addProperty("id", assoc.getId());
+                jsono.addProperty("nom", assoc.getNom());
+            }
+        }
+        /*
+         * citoyenRepo.findAll().forEach(c->{ System.out.println(c.getEmail()); });
+         * System.out.println(citoyen.getEmail());
+         */
+
+        return jsono.toString();
     }
 
 }

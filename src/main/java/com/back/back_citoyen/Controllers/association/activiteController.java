@@ -10,6 +10,7 @@ import com.back.back_citoyen.Entity.Assosiation.Activite;
 import com.back.back_citoyen.Entity.Assosiation.assosiation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,8 @@ public class activiteController {
     AssociationRepo associationRepo;
 
     Activite activite = new Activite();
- 
+
+    @CrossOrigin("*")
     @PutMapping(value = "/ActionOnActivite")
     public String ActionOnActivite(@RequestParam("id") Long id, @RequestParam("status") String status,
             @RequestParam("score") String score) {
@@ -53,6 +55,7 @@ public class activiteController {
 
     }
 
+<<<<<<< HEAD
     @PostMapping(value = "/AjouterActivite")
     public String AjouterActivite(@RequestParam(value = "image", required = false) MultipartFile image,
     @RequestParam("titre") String titre, @RequestParam("description") String description,
@@ -72,7 +75,13 @@ public class activiteController {
             return "Failed";
         }
    
+=======
+    @CrossOrigin("*")
+    @GetMapping(value = "/activites/inProgress")
+    public List<Activite> ListeInProgress() {
+        List<Activite> liste = activiteRepo.findByStatut("in progress");
+>>>>>>> 962c7faa2f4276674882cbf97fb439766741e178
 
+        return liste;
     }
-
 }
