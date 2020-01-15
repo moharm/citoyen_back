@@ -45,8 +45,6 @@ public class CitoyenSetting {
     @PutMapping(path = "/citoyen/Participer")
     public String Participer(@RequestParam(value = "id_citoyen") Long  id_citoyen,
                                 @RequestParam(value = "id_Activite") Long id_Activite){
-            
-
 
             Citoyen citoyen = citoyenRepo.getOne(id_citoyen);
             Activite activite = activiteRepo.getOne(id_Activite);

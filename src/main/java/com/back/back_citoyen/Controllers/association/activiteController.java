@@ -42,13 +42,5 @@ public class activiteController {
 
     }
 
-    /*
-     * @GetMapping(value = "/activities") public List<Activite> Liste() {
-     * List<Activite> liste = activiteRepo.findAll() List<Activite> liste =
-     * activiteRepo.findAll(); return liste; }
-     * 
-     * @GetMapping(value = "/activite") public List<activiteid> activite() {
-     * List<Activite> liste = activiteRepo.findAll(); return liste; }
-     */
 
 }
