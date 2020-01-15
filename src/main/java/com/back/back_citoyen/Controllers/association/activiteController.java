@@ -12,8 +12,6 @@ import com.back.back_citoyen.Entity.Assosiation.assosiation;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,17 +56,14 @@ public class activiteController {
 
     @PostMapping(value = "/association/activites")
     public List<Activite> getcitat(@RequestBody String data) {
-
         try {
             o = new JSONObject(data);
             Long id = o.getLong("id");
-            System.out.println("********************");
             return activiteRepo.findByAssosiation_Id(id);
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         /*
          * 
          */
