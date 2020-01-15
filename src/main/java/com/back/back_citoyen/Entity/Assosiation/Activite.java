@@ -37,7 +37,7 @@ public class Activite implements Serializable {
     private Double latitude;
     private Long effectif;
     private Long effectif_now;
-    private String score;
+    private String scor;
     private String statut;
     private String image;
     @JsonIgnore
@@ -63,7 +63,7 @@ public class Activite implements Serializable {
      */
 
     public Activite(String titre, String description, java.sql.Date date_debut2, java.sql.Date date_fin2, Double longitude, Double latitude,
-            Long effectif, String score, String image,
+            Long effectif, String scor, String image,
             com.back.back_citoyen.Entity.Assosiation.assosiation assosiation,String statut) {
         this.titre = titre;
         this.description = description;
@@ -72,7 +72,7 @@ public class Activite implements Serializable {
         this.longitude = longitude;
         this.latitude = latitude;
         this.effectif = effectif;
-        this.score = score;
+        this.scor = scor;
         this.image = image;
         this.assosiation = assosiation;
         this.statut = statut;

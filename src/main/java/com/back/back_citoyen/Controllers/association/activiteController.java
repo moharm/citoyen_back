@@ -72,6 +72,18 @@ public class activiteController {
 
     @PostMapping(value = "/AjouterActivite")
     public String AjouterActivite(@RequestParam(value = "image", required = false) MultipartFile image,
+<<<<<<< HEAD
+    @RequestParam("titre") String titre, @RequestParam("description") String description,
+    @RequestParam("date_debut") Date date_debut, @RequestParam("date_fin") Date date_fin,
+    @RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude,
+    @RequestParam("effectif") Long effectif, @RequestParam("scor") String scor,
+    @RequestParam("assosiation_id") Long assosiation_id) {
+
+        try {
+            assosiation asso = associationRepo.getOne(assosiation_id);
+            activiteRepo.save(new Activite(titre, description, date_debut, date_fin, longitude, latitude, effectif, scor, image.getOriginalFilename(), asso,"in progress"));
+
+=======
             @RequestParam("titre") String titre, @RequestParam("description") String description,
             @RequestParam("date_debut") Date date_debut, @RequestParam("date_fin") Date date_fin,
             @RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude,
@@ -82,6 +94,7 @@ public class activiteController {
             assosiation asso = associationRepo.getOne(assosiation_id);
             activiteRepo.save(new Activite(titre, description, date_debut, date_fin, longitude, latitude, effectif,
                     score, image.getOriginalFilename(), asso, "in progress"));
+>>>>>>> 1e0f1a35df53ac0322232283fefcaea74bce8753
 
             return "success";
         } catch (Exception e) {
